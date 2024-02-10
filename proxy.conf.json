@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://api.first.org",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

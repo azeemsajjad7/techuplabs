@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="m-4">
+    <div>
+      <button
+        style="width: 150px"
+        class="btn btn-primary"
+        (click)="addCustomer()"
+      >
+        Add Customer
+      </button>
+    </div>
+    <div class="mt-2">
+      <button style="width: 150px" class="btn btn-primary" (click)="addPin()">
+        Add Pin
+      </button>
+    </div>
+  </div>
+
+  <table *ngIf="pin" class="table mt-4 border">
+    <thead class="thead-dark">
+      <tr>
+        <th class="border text-center">Title</th>
+        <th class="border text-center">Image</th>
+        <th class="border text-center">Collaborators</th>
+        <th class="border text-center">Privacy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of pin">
+        <td class="border text-center">{{ item.title }}</td>
+        <td class="border text-center">
+          <img style="height: 60px; width: auto" [src]="item.image" alt="" />
+        </td>
+        <td class="border text-center">
+          <ul class="list-unstyled">
+            <li *ngFor="let customer of item.collaborators">
+              {{ customer.name }}
+            </li>
+          </ul>
+        </td>
+        <td class="border text-center">{{ item.privacy | titlecase }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,69 @@
+<div *ngIf="form" class="p-3">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-3">
+    <div class="form-group m-2">
+      <label for="title">Title:</label>
+      <input
+        type="text"
+        id="title"
+        formControlName="title"
+        class="form-control"
+      />
+    </div>
+
+    <div class="border form-group m-2 p-3">
+      <label>Image:</label>
+      <div
+        ng2FileDrop
+        [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
+        (fileOver)="fileOverBase($event)"
+        [uploader]="uploader"
+        (onFileDrop)="onFileSelected($event)"
+        class="well my-drop-zone"
+        style="height: 100px; width: 100%"
+      >
+        Drag and Drop
+      </div>
+      <div class="m-2">{{ fileName }}</div>
+    </div>
+
+    <div class="form-group m-2">
+      <label for="collaborators">Collaborators:</label>
+      <ngx-select
+        [items]="collaborators"
+        formControlName="collaborators"
+        [placeholder]="
+          collaborators.length > 0 ? 'Select collaborators' : 'No Collaborators'
+        "
+        [multiple]="true"
+        optionTextField="name"
+      ></ngx-select>
+    </div>
+
+    <div class="form-group m-2">
+      <label>Privacy:</label><br />
+      <label>
+        <input type="radio" formControlName="privacy" value="public" /> Public
+      </label>
+      <label>
+        <input type="radio" formControlName="privacy" value="private" /> Private
+      </label>
+    </div>
+
+    <div class="text-right">
+      <button
+        [disabled]="form.invalid"
+        type="submit"
+        class="btn btn-primary m-2"
+      >
+        Submit
+      </button>
+      <button
+        type="reset"
+        class="btn btn-secondary"
+        (click)="dialogRef.close()"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
